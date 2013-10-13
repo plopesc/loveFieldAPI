@@ -5,13 +5,118 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=792, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+    <link rel="stylesheet" href="shower/themes/custom/ribbon/plugins/prism/prism.css">
+	<link rel="stylesheet" href="shower/themes/custom/ribbon/styles/screen.css">
+    <style>
+        .slide {
+            background: none repeat scroll 0 0 #000000;
+            color: #FFFFFF;
+        }
+        .slide:after {
+            background: none;
+            content: none;
+        }
+        .slide > div {
+            height: 580px;
+            width: 904px;
+            padding: 60px 60px 0;
+        }
+        .slide a {
+            color: #52A2DF;
+            border: none;
+        }
+        .slide h2 {
+            color: #FFFFFF;
+            line-height: 1.25;
+        }
+        .slide p {
+            font-size: 28px;
+            line-height: 1.5;
+        }
+        .slide h3 {
+            font-size: 32px;
+            line-height: 1.375;
+        }
+        .slide kbd, .slide code, .slide samp {
+            -moz-tab-size: 2;
+            -o-tab-size: 2;
+            tab-size: 2;
+            background: none repeat scroll 0 0 #000000;
+            color: #FFFFFF;
+            margin-right: 0.2em;
+        }
+        .slide pre code {
+            line-height: 40px;
+            white-space: pre-wrap;
+        }
+        .slide pre code:before {
+            content: none;
+        }
+
+        .slide.big-centered h2 {
+            text-align: center;
+            font-size: 75px;
+            margin-top: 75px;
+            line-height: 1.25
+        }
+        .slide.big-centered p {
+            text-align: center;
+            font-size: 50px;
+            color: #DDDDDD;
+            line-height: 1.33
+        }
+        .slide.no-margin > div {
+            width: 984px;
+            height: 620px;
+            padding: 20px 20px 0;
+        }
+
+        .slide.shadow {
+            text-shadow: 5px 5px 10px #000;
+        }
+
+        .slide.show-me-the-code p.filename {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .slide.show-me-the-code pre {
+            height: 380px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+        .slide.show-me-the-code pre code {
+            font-size: 16px;
+            line-height: 20px;
+        }
+        .slide.show-me-the-code p.note {
+            font-size: 22px;
+            float:right;
+        }
+
+        .slide.black h2{
+            color: #000000;
+        }
+        .slide.black p {
+            color: #000000;
+        }
+
+        p.footer {
+            margin-top: 520px;
+            font-size: 22px;
+        }
+
+        p.header {
+            margin-top: 0px;
+            font-size: 22px;
+        }
+    </style>
 </head>
 <body class="list">
 	<header class="caption">
 		<h1>Shower Presentation Engine</h1>
 		<p>Yours Truly, Famous Inc.</p>
 	</header>
+    <!-- Cover -->
 	<section class="slide cover" id="Cover"><div>
 		<h2>Déjate seducir por Field API</h2>
 		<p>Drupalcamp Spain - Cáceres 27/10/2013</p>
@@ -39,23 +144,21 @@
 					}
 		</style>
 	</div></section>
+
+    <!-- Intro -->
 	<section class="slide" id="intro"><div>
-		<h2>Introducción</h2>
+		<h2>What is Field API</h2>
 		<ul>
 			<li>Incluída en D7 a partir de CCK</li>
 			<li>Encargada de almacenar y representar las propiedades de cualquier Entity</li>
 			<li>Se apoya en Form API para la inserción de datos</li>
-			<li class="next"><span>Altamente extensible y de gran versatilidad</span></li>
+			<li><span>Altamente extensible y de gran versatilidad</span></li>
 		</ul>
-        <style>
-            #intro span {
-                background-color: #60ff3c;
-                font-weight: bold;
-            }
-        </style>
 	</div></section>
+
+    <!-- Terminology -->
     <section class="slide"><div>
-        <h2>Terminología</h2>
+        <h2>Terminology</h2>
         <ul>
             <li>Entities</li>
             <li>Field Types</li>
@@ -64,12 +167,16 @@
             <li>Bundles</li>
         </ul>
     </div></section>
+
+    <!-- Structure -->
     <section class="slide"><div>
-        <h2>Estuctura</h2>
+        <h2>Stucture</h2>
         <p>Dibujo Coche vs Laptop</p>
     </div></section>
+
+    <!-- Components -->
 	<section class="slide"><div>
-		<h2>Componentes de Field API</h2>
+		<h2>Field API components</h2>
         <ul>
             <li>Field Types API</li>
             <li>Field Language API</li>
@@ -79,6 +186,27 @@
             <li>Field API bulk data</li>
         </ul>
 	</div></section>
+
+    <!-- Components 2 -->
+    <section class="slide"><div>
+        <h2>Field API components</h2>
+        <ul>
+            <li class="highlight">Field Types API</li>
+            <li class="highlight">Field Language API</li>
+            <li>Field Info API</li>
+            <li>Field CRUD API</li>
+            <li>Field Storage API</li>
+            <li>Field API bulk data</li>
+        </ul>
+        <style>
+            .highlight {
+                font-size: 32px;
+                font-weight: bold;
+            }
+        </style>
+    </div></section>
+
+    <!-- Field Types API -->
     <section class="slide"><div>
         <h2>Field Types API</h2>
         <ul>
@@ -87,78 +215,8 @@
             <li>Formatter</li>
         </ul>
     </div></section>
-    <section class="slide cover"><div>
-        <h2>... y todo esto para que??</h2>
-        <p class="next">Para hacernos la vida más fácil!!</p>
-        <img src="pictures/cover.jpg" alt="">
-    </div></section>
-    <section class="slide cover"><div>
-        <h2>Nuestro cliente pide...</h2>
-        <p>Un campo que represente la suma de todos sus componentes</p>
-        <img src="pictures/cover.jpg" alt="">
-    </div></section>
-    <section class="slide"><div>
-        <h2>Code Samples</h2>
-        <p class="next">Funciona pero...</p>
-		<pre>
-			<code>function my_module_node_view($node, $view_mode, $langcode) {</code>
-			<code>  if ($node-&gt;type == 'page') {</code>
-			<code>    if (isset($node-&gt;content['field_integer'][0])) {</code>
-            <code>      $items = field_get_items('node', $node, 'field_integer');</code>
-            <code>      $result = 0;</code>
-            <code>      foreach ($items as $item) {</code>
-            <code>        $result += $item['value'];</code>
-            <code>      }</code>
-            <code>      $node->content['field_integer'] =</code>
-            <code>        array(array('#markup' => $result));</code>
-            <code>    }</code>
-            <code>  }</code>
-            <code>}</code>
-		</pre>
 
-    </div></section>
-    <section class="slide shout cover"><div>
-        <h2>Let's do Field API style!!</h2>
-        <img src="pictures/cover.jpg" alt="">
-    </div></section>
-    <section class="slide"><div>
-        <h2>hook_field_formatter_info()</h2>
-		<pre>
-			<code>function addition_formatter_field_formatter_info() {</code>
-			<code>  return array(</code>
-			<code>    'addition_formatter_basic' => array(</code>
-            <code>      'label' => t('Basic Addition Formatter'),</code>
-            <code>      'description' => t('Displays the result of the addition of all the field items'),</code>
-            <code>      'field types' => array('number_integer', 'number_decimal', 'number_float'),</code>
-            <code>      'settings' => array(),</code>
-            <code>      }</code>
-            <code>    ),</code>
-            <code>  );</code>
-            <code>}</code>
-		</pre>
-
-    </div></section>
-    <section class="slide"><div>
-        <h2>hook_field_formatter_view()</h2>
-		<pre>
-			<code>function addition_formatter_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {</code>
-			<code>  $element = array();</code>
-			<code>  if ($items) {</code>
-            <code>    $addition = 0;</code>
-            <code>    foreach ($items as $delta => $item) {</code>
-            <code>      $addition += $item['value'];</code>
-            <code>    }</code>
-            <code>    $element[0] = array('#markup' => $addition);</code>
-            <code>  }</code>
-            <code>  return $element;</code>
-            <code>}</code>
-		</pre>
-    </div></section>
-    <section class="slide cover"><div>
-        <h2>Pero ahora lo que quiero...</h2>
-        <p>...es representar operaciones matemáticas y almacenar sus resultados</p>
-        <img src="pictures/cover.jpg" alt="">
-    </div></section>
+    <!-- Field Type -->
     <section class="slide"><div>
         <h2>Field Type</h2>
         <ul>
@@ -168,9 +226,9 @@
                 </ul>
             </li>
             <li class="next">hook_field_info()
-              <ul>
-                  <li>Define la estructura del campo</li>
-              </ul>
+                <ul>
+                    <li>Define la estructura del campo</li>
+                </ul>
             </li>
             <li class="next">hook_field_is_empty()
                 <ul>
@@ -184,10 +242,12 @@
             </li>
         </ul>
     </div></section>
+
+    <!-- Widget -->
     <section class="slide"><div>
         <h2>Widget</h2>
         <ul>
-            <li>hook_field_widget_info()</li>
+            <li>hook_field_widget_info()
             <ul>
                 <li>Define la estructura del widget</li>
             </ul>
@@ -204,10 +264,12 @@
             </li>
         </ul>
     </div></section>
+
+    <!-- Formatter -->
     <section class="slide"><div>
         <h2>Formatter</h2>
         <ul>
-            <li>hook_field_formatter_info()</li>
+            <li>hook_field_formatter_info()
             <ul>
                 <li>Define la estructura del widget</li>
             </ul>
@@ -234,10 +296,576 @@
             </li>
         </ul>
     </div></section>
-    <section class="slide shout cover"><div>
-        <h2>Let's do Field API style!!</h2>
-        <img src="pictures/cover.jpg" alt="">
+
+    <!-- And why? -->
+    <section class="slide cover"><div>
+        <h2>... and all for what??</h2>
+        <p class="next highlight">To make our life easier!!</p>
+        <img src="pictures/cat_sofa.jpg" alt="">
     </div></section>
+
+    <!-- Client Question 1 -->
+    <section class="slide cover black"><div>
+        <h2>Our boss need...</h2>
+        <p>Show the sum of all field items</p>
+        <img src="pictures/angry-boss_scale.jpg" alt="">
+    </div></section>
+
+    <!-- hook_node_view() -->
+    <section class="slide" id="strike"><div>
+        <h2>The easy way...</h2>
+		<pre>
+			<code class="language-php">function my_module_node_view($node, $view_mode, $langcode) {
+  if ($node-&gt;type == 'page') {
+    if (isset($node-&gt;content['field_integer'][0])) {
+      $items = $node-$gt;field_integer['und'];
+      $result = 0;
+      foreach ($items as $item) {
+        $result += $item['value'];
+      }
+      $node->content['field_integer'] =
+        array(array('#markup' => $result));
+    }
+  }
+}</code>
+		</pre>
+        <div class="next strike"><p>Funciona pero...</p></div>
+        <style>
+            #strike .strike {
+                margin-top: -350px;
+                background-color: red;
+            }
+        </style>
+    </div></section>
+
+    <!-- Let's do Field API style -->
+    <section class="slide shout cover"><div>
+        <h2>Let's do<br><br><br>Field API style!!</h2>
+        <img src="pictures/obama_scale.jpg" alt="">
+    </div></section>
+
+    <!-- Addition formatter 1-->
+    <section class="slide"><div>
+        <h2>hook_field_formatter_info()</h2>
+		<pre>
+			<code class="language-php">function addition_formatter_field_formatter_info() {
+  return array(
+    'addition_formatter_basic' => array(
+      'label' => t('Basic Addition Formatter'),
+      'description' => t('Sums all the field items'),
+      'field types' => array('number_integer', 'number_decimal', 'number_float'),
+      'settings' => array(),
+    ),
+  );
+}</code>
+		</pre>
+    </div></section>
+
+    <!-- Addition formatter 2 -->
+    <section class="slide"><div>
+        <h2>hook_field_formatter_view()</h2>
+		<pre>
+			<code class="language-php">function addition_formatter_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  if ($items) {
+    $addition = 0;
+    foreach ($items as $delta => $item) {
+      $addition += $item['value'];
+    }
+    $element[0] = array('#markup' => $addition);
+  }
+  return $element;
+}</code>
+		</pre>
+    </div></section>
+
+    <!-- Client question 2 -->
+    <section class="slide cover black"><div>
+        <h2>But now, what I need...</h2>
+        <p>...is represent basic arithmetic<br>operations and store its results</p>
+        <img src="pictures/angry_boss_scale.jpg" alt="">
+    </div></section>
+
+    <!-- Field type architecture -->
+    <section class="slide"><div>
+        <h2>How would I write it...</h2>
+        <ul>
+            <li>Create our custom field type
+                <ul>
+                    <li>4 DB columns (operand1, operand 2, operation and value)</li>
+                </ul>
+            </li>
+            <li class="next">
+                Create our custom widget
+                <ul>
+                    <li>Two text fields for each operand and select for operation</li>
+                    <li class="next"><i>Black magic</i> to store operation result</li>
+                </ul>
+            </li>
+            <li class="next">
+                Create our custom formatter
+            </li>
+            <li class="next">
+                hook_field_formatter_info_alter()
+                <ul>
+                    <li>Reuse number module formatters</li>
+                </ul>
+            </li>
+        </ul>
+    </div></section>
+
+    <!-- Field API is sexy -->
+    <section class="slide shout cover shadow">
+        <p class="header">http://www.flickr.com/photos/jasonmirandes/</p>
+        <div>
+        <h2>It's so easy<br><br><br>using Field API...</h2>
+        <img src="pictures/pistolas.jpg" alt="">
+    </div></section>
+
+    <!-- Field Language API -->
+    <section class="slide cover"><div>
+        <h2>Field Language API</h2>
+        <img src="pictures/scared_scale.jpg" alt="">
+    </div></section>
+
+    <!-- Field Language API screenshot 1 -->
+    <section class="slide cover black"><div>
+        <img src="pictures/language_meanings.png" alt="">
+        <p class="footer">https://drupal.org/node/1500308</p>
+    </div></section>
+
+    <!-- Field Language API screenshot 2 -->
+    <section class="slide cover black"><div>
+        <img src="pictures/language_variants.png" alt="">
+        <p class="footer">https://drupal.org/node/1500308</p>
+    </div></section>
+
+    <!-- Dirty field access -->
+    <section class="slide"><div>
+        <h2>How to access to our fields</h2>
+        <p><del><code class="language-php">$values = $entity->my_field['und'][0]</code></del></p>
+        <p class="next"><code class="language-php">$language = field_language('node', $node, 'my_field');
+$values = $node->my_field[$language][0];</code></p>
+    </div></section>
+
+    <!-- Field API field access -->
+    <section class="slide"><div>
+        <h2>How to access to our fields using Field API</h2>
+        <p><code>field_get_items</code><br>
+            <code style="font-size: 18px;">($entity_type, $entity, $field_name, $langcode = NULL)</code></p>
+        <p class="next"><code class="language-php">field_view_field</code><br>
+            <code style="font-size: 18px;">($entity_type, $entity, $field_name, $display = array(), $langcode = NULL)</code></p>
+        <p class="next"><code class="language-php">field_view_value</code><br>
+            <code style="font-size: 16px;">($entity_type, $entity, $field_name, $item, $display = array(), $langcode = NULL)</code></p>
+    </div></section>
+
+    <!-- Field API is sexy -->
+    <section class="slide shout cover shadow">
+        <p class="header">http://www.flickr.com/photos/jasonmirandes/</p>
+        <div>
+        <h2>Field API<br><br><br>do it for us...</h2>
+        <img src="pictures/pistolas.jpg" alt="">
+    </div></section>
+
+    <!-- And Drupal 8?? -->
+    <section class="slide shout cover arnedo"><div>
+        <h2>...and Drupal 8??</h2>
+        <img src="pictures/arnedo.jpg" alt="">
+        <style>
+            .slide.arnedo h2 {
+                top: 40%;
+            }
+            .arnedo .footer {
+                color: #646464;
+            }
+        </style>
+        <p class="footer">http://www.flickr.com/photos/37765154@N04</p>
+    </div></section>
+
+    <!-- Field API in D8 -->
+    <section class="slide"><div>
+        <h2>Field API in D8</h2>
+        <p>Field types are now plugins: https://drupal.org/node/2064123</p>
+        <p>Entity based storage: https://drupal.org/node/2078765</p>
+        <p>Form modes: https://drupal.org/node/2014821</p>
+        <p>Some others...</p>
+    </div></section>
+
+    <!-- Goodbye hooks -->
+    <section class="slide"><div>
+        <h2>Goodbye hooks and procedural code!</h2>
+        <p>Drupal 7: 80 hooks </p>
+        <p>Drupal 8: 21 hooks and countdown...</p>
+        <ul class="next">
+            <li>hook_field_schema() -> ConfigFieldItemInterface::schema()</li>
+            <li>hook_field_settings_form() -> ConfigFieldItemInterface::settingsForm()</li>
+            <li>field_info_field_types() -> Drupal::service('plugin.manager.entity.field.field_type')<br>->getDefinitions();</li>
+        </ul>
+    </div></section>
+
+    <!-- Under construction -->
+    <section class="slide shout cover"><div>
+        <h2>still under<br><br><br>construction</h2>
+        <img src="pictures/working_dog_scale.jpg" alt="">
+    </div></section>
+
+    <!-- Show me the code -->
+    <section class="slide shout cover shadow"><div>
+        <h2>...but show me<br><br>the code!</h2>
+        <img src="pictures/show_code_scale.jpg" alt="">
+    </div></section>
+
+    <!-- Formatter example -->
+    <section class="slide show-me-the-code"><div>
+        <h2>Addition formatter</h2>
+        <p class="filename">modules/addition_formatter/lib/Drupal/addition_formatter/Plugin/field/formatter/NumberFullAdditionFormatter.php</p>
+		<pre>
+			<code class="language-php">namespace Drupal\addition_formatter\Plugin\field\formatter;
+
+use Drupal\field\Annotation\FieldFormatter;
+use Drupal\Core\Annotation\Translation;
+use Drupal\Core\Entity\Field\FieldItemListInterface;
+use Drupal\number\Plugin\field\formatter\NumberDecimalFormatter;
+
+/**
+ * Plugin implementation of the 'number_full_addition' formatter.
+ *
+ * @FieldFormatter(
+ *   id = "number_full_addition",
+ *   label = @Translation("Number Full Addition"),
+ *   field_types = {
+ *     "number_integer",
+ *     "number_decimal",
+ *     "number_float"
+ *   },
+ *   settings = {
+ *     "thousand_separator" = "",
+ *     "decimal_separator" = ".",
+ *     "scale" = "2",
+ *     "prefix_suffix" = "TRUE"
+ *   }
+ * )
+ */
+class NumberFullAdditionFormatter extends NumberDecimalFormatter {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function viewElements(FieldItemListInterface $items) {
+    $elements = array();
+
+    foreach ($items as $delta => $item) {
+      if ($delta != 0) {
+        $items[0]->value += $item->value;
+        unset($items[$delta]);
+      }
+    }
+
+    return parent::viewElements($items);
+  }
+
+}</code>
+		</pre>
+        <p class="note">URL to snippet</p>
+    </div></section>
+
+    <!-- Field type exaple -->
+    <section class="slide show-me-the-code"><div>
+        <h2>Arithmetic field type</h2>
+        <p class="filename">modules/arithmetic_field/lib/Drupal/arithmetic_field/Plugin/field/field_type/ArithmeticItem.php</p>
+		<pre>
+			<code class="language-php">namespace Drupal\arithmetic_field\Plugin\field\field_type;
+
+use Drupal\Core\Entity\Annotation\FieldType;
+use Drupal\Core\Annotation\Translation;
+use Drupal\field\FieldInterface;
+use Drupal\field\Plugin\Type\FieldType\ConfigFieldItemBase;
+
+  /**
+   * Plugin implementation of the 'arithmetic' field type.
+   *
+   * @FieldType(
+   *   id = "arithmetic",
+   *   label = @Translation("Arithmetic"),
+   *   description = @Translation("Field that represents arithmetic operations."),
+   *   default_widget = "arithmetic",
+   *   default_formatter = "arithmetic"
+   * )
+   */
+class ArithmeticItem extends ConfigFieldItemBase {
+
+  /**
+   * Definitions of the contained properties.
+   *
+   * @var array
+   */
+  static $propertyDefinitions;
+
+  const ADDITION = '+';
+  const SUBTRACTION = '-';
+  const MULTIPLICATION = 'X';
+  const DIVISION = '/';
+
+  /**
+   * {@inheritdoc}
+  */
+  public function getPropertyDefinitions() {
+    if (!isset(static::$propertyDefinitions)) {
+      static::$propertyDefinitions['operand1'] = array(
+        'type' => 'float',
+        'label' => t('First value'),
+      );
+      static::$propertyDefinitions['operand2'] = array(
+        'type' => 'float',
+        'label' => t('Second value'),
+      );
+      static::$propertyDefinitions['operation'] = array(
+        'type' => 'string',
+        'label' => t('operation'),
+      );
+      static::$propertyDefinitions['value'] = array(
+        'type' => 'float',
+        'label' => t('Operation result'),
+      );
+    }
+    return static::$propertyDefinitions;
+  }
+
+  /**
+   * {@inheritdoc}
+  */
+  public static function schema(FieldInterface $field) {
+    return array(
+      'columns' => array(
+        'operand1' => array(
+          'type' => 'float',
+          'not null' => FALSE,
+        ),
+        'operand2' => array(
+          'type' => 'float',
+          'not null' => FALSE,
+        ),
+        'operation' => array(
+          'type' => 'varchar',
+          'length' => 1,
+          'not null' => FALSE
+        ),
+        'value' => array(
+          'type' => 'float',
+          'not null' => FALSE,
+        ),
+      ),
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isEmpty() {
+    if ((empty($this->operand1) && (string) $this->operand1 !== '0') || (empty($this->operand2) && (string) $this->operand2 !== '0')) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+}</code>
+		</pre>
+        <p class="note">URL to snippet</p>
+    </div></section>
+
+    <!-- Widget example -->
+    <section class="slide show-me-the-code"><div>
+        <h2>Arithmetic widget</h2>
+        <p class="filename">modules/arithmetic_field/lib/Drupal/arithmetic_field/Plugin/field/widget/ArithmeticWidget.php</p>
+		<pre>
+			<code class="language-php">namespace Drupal\arithmetic_field\Plugin\field\widget;
+
+use Drupal\arithmetic_field\Plugin\field\field_type\ArithmeticItem;
+use Drupal\field\Annotation\FieldWidget;
+use Drupal\Core\Annotation\Translation;
+use Drupal\Core\Entity\Field\FieldItemListInterface;
+use Drupal\field\Plugin\Type\Widget\WidgetBase;
+use Symfony\Component\Validator\ConstraintViolationInterface;
+
+/**
+ * Plugin implementation of the 'arithmetic' widget.
+ *
+ * @FieldWidget(
+ *   id = "arithmetic",
+ *   label = @Translation("Arithmetic"),
+ *   field_types = {
+ *     "arithmetic"
+ *   },
+ *   settings = {
+ *     "placeholder" = ""
+ *   }
+ * )
+ */
+class ArithmeticWidget extends WidgetBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsForm(array $form, array &$form_state) {
+    $element['placeholder'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Placeholder'),
+      '#default_value' => $this->getSetting('placeholder'),
+      '#description' => t('Text that will be shown inside the field until a value is entered. This hint is usually a sample value or a brief description of the expected format.'),
+    );
+    return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsSummary() {
+    $summary = array();
+
+    $placeholder = $this->getSetting('placeholder');
+    if (!empty($placeholder)) {
+      $summary[] = t('Placeholder: @placeholder', array('@placeholder' => $placeholder));
+    }
+    else {
+      $summary[] = t('No placeholder');
+    }
+
+    return $summary;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, array &$form_state) {
+    $operand1 = isset($items[$delta]->operand1) ? $items[$delta]->operand1 : NULL;
+    $operand2 = isset($items[$delta]->operand2) ? $items[$delta]->operand2 : NULL;
+    $operation = isset($items[$delta]->operation) ? $items[$delta]->operation : NULL;
+
+    $element += array(
+      '#type' => 'fieldset',
+    );
+
+    $element['operand1'] = array(
+      '#type' => 'number',
+      '#default_value' => $operand1,
+      '#placeholder' => $this->getSetting('placeholder'),
+      '#step' => 'any',
+      '#weight' => 0,
+    );
+
+    $element['operation'] = array(
+      '#type' => 'select',
+      '#options' => array(
+        ArithmeticItem::ADDITION => ArithmeticItem::ADDITION,
+        ArithmeticItem::SUBTRACTION => ArithmeticItem::SUBTRACTION,
+        ArithmeticItem::MULTIPLICATION => ArithmeticItem::MULTIPLICATION,
+        ArithmeticItem::DIVISION => ArithmeticItem::DIVISION
+      ),
+      '#default_value' => $operation,
+      '#weight' => 1,
+    );
+
+    $element['operand2'] = array(
+      '#type' => 'number',
+      '#default_value' => $operand2,
+      '#placeholder' => $this->getSetting('placeholder'),
+      '#step' => 'any',
+      '#weight' => 2,
+    );
+
+    return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function massageFormValues(array $values, array $form, array &$form_state) {
+    foreach ($values as $delta => &$item) {
+      switch($item['operation']) {
+        case ArithmeticItem::SUBTRACTION:
+          $item['value'] = $item['operand1'] - $item['operand2'];
+          break;
+        case ArithmeticItem::MULTIPLICATION:
+          $item['value'] = $item['operand1'] * $item['operand2'];
+          break;
+        case ArithmeticItem::DIVISION:
+          $item['value'] = $item['operand1'] / $item['operand2'];
+          break;
+        case ArithmeticItem::ADDITION:
+        default:
+          $item['value'] = $item['operand1'] + $item['operand2'];
+      }
+    }
+    return $values;
+  }
+
+}</code>
+		</pre>
+        <p class="note">URL to snippet</p>
+    </div></section>
+
+    <!-- Code comparison -->
+    <section class="slide"><div>
+        <h2>Code comparison</h2>
+        <table>
+            <tr>
+                <th scope="col" width=380>Addition formatter</th>
+                <th>Files</th>
+                <th>Folders</th>
+                <th>Lines of code</th>
+            </tr>
+            <tr>
+                <th scope="row">Drupal 7</th>
+                <td>2</td>
+                <td>1</td>
+                <td>XXXXXXX</td>
+            </tr>
+            <tr>
+                <th scope="row">Drupal 8</th>
+                <td>4</td>
+                <td>7</td>
+                <td>XXXXXXXXX</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th scope="col" width=380>Arithmetic Field</th>
+                <th>Files</th>
+                <th>Folders</th>
+                <th>Lines of code</th>
+            </tr>
+            <tr>
+                <th scope="row">Drupal 7</th>
+                <td>3</td>
+                <td>1</td>
+                <td>XXXXXXX</td>
+            </tr>
+            <tr>
+                <th scope="row">Drupal 8</th>
+                <td>5</td>
+                <td>9</td>
+                <td>XXXXXXXXX</td>
+            </tr>
+        </table>
+        <p>It’s good to have code organized.</p>
+    </div></section>
+
+    <!-- Thank you! -->
+    <section class="slide cover shadow" id="thank-you"><div>
+        <h2>Thank you!</h2>
+        <p>Drupal.org: plopesc</p>
+        <p>Twitter: @plopesc</p>
+        <img src="pictures/plopesc_beach_scale.jpg">
+        <h2 class="footer">Fresh fields are waiting for you!!</h2>
+        <style>
+            #thank-you .footer {
+                margin-top: 200px;
+                font-size: 65px;
+            }
+        </style>
+    </div></section>
+
+<!--
     <section class="slide"><div>
         <h2>Widget</h2>
         <iframe src="http://www.w3schools.com"></iframe>
@@ -351,6 +979,7 @@
 				}
 		</style>
 	</div></section>
+	-->
 	<p class="badge"><a href="https://github.com/shower/shower">Fork me on Github</a></p>
 	<!--
 		To hide progress bar from entire presentation
@@ -358,6 +987,7 @@
 		-->
 	<div class="progress"><div></div></div>
 	<script src="shower/shower.min.js"></script>
+    <script src="shower/themes/custom/ribbon/plugins/prism/prism.js"></script>
 	<!-- Copyright © 2013 Yours Truly, Famous Inc. -->
 	<!-- Photos by John Carey, fiftyfootshadows.net -->
 </body>
