@@ -78,6 +78,7 @@
         .slide.show-me-the-code p.filename {
             margin-bottom: 10px;
             font-size: 18px;
+            font-weight: bold;
         }
         .slide.show-me-the-code pre {
             height: 380px;
@@ -92,6 +93,13 @@
             font-size: 22px;
             float:right;
         }
+
+
+        .slide.code pre code {
+            font-size: 22px;
+            line-height: 30px;
+        }
+
 
         .slide.black h2{
             color: #000000;
@@ -117,10 +125,10 @@
 		<p>Yours Truly, Famous Inc.</p>
 	</header>
     <!-- Cover -->
-	<section class="slide cover" id="Cover"><div>
+	<section class="slide cover shadow" id="Cover"><div>
 		<h2>Déjate seducir por Field API</h2>
 		<p>Drupalcamp Spain - Cáceres 27/10/2013</p>
-		<img src="pictures/cover.jpg" alt="">
+		<img src="pictures/tulips_scale.jpg" alt="">
 		<!--
 			To apply styles to the certain slides
 			set slide ID to get needed elements
@@ -131,17 +139,14 @@
 				color:#FFF;
 				text-align:center;
 				font-size:70px;
-				}
+			}
 			#Cover p {
 				margin:10px 0 0;
 				text-align:center;
 				color:#FFF;
 				font-style:italic;
 				font-size:20px;
-				}
-				#Cover p a {
-					color:#FFF;
-					}
+			}
 		</style>
 	</div></section>
 
@@ -152,7 +157,7 @@
 			<li>Incluída en D7 a partir de CCK</li>
 			<li>Encargada de almacenar y representar las propiedades de cualquier Entity</li>
 			<li>Se apoya en Form API para la inserción de datos</li>
-			<li><span>Altamente extensible y de gran versatilidad</span></li>
+			<li>Altamente extensible y de gran versatilidad</li>
 		</ul>
 	</div></section>
 
@@ -221,23 +226,23 @@
         <h2>Field Type</h2>
         <ul>
             <li>hook_field_schema()
-                <ul>
+    <!--            <ul>
                     <li>Define la estructura de la BD</li>
-                </ul>
+                </ul> -->
             </li>
             <li class="next">hook_field_info()
-                <ul>
+    <!--            <ul>
                     <li>Define la estructura del campo</li>
-                </ul>
+                </ul> -->
             </li>
             <li class="next">hook_field_is_empty()
-                <ul>
+    <!--            <ul>
                     <li>Define si nuestro campo está vacío o no</li>
-                </ul>
+                </ul> -->
             </li>
-            <li class="next">Otros hooks...
+            <li class="next">Other hooks...
                 <ul>
-                    <li>hook_1, Hook_2, ...</li>
+                    <li>hook_field_validate()</li>
                 </ul>
             </li>
         </ul>
@@ -248,18 +253,18 @@
         <h2>Widget</h2>
         <ul>
             <li>hook_field_widget_info()
-            <ul>
+ <!--           <ul>
                 <li>Define la estructura del widget</li>
-            </ul>
+            </ul> -->
             </li>
             <li class="next">hook_field_widget_form()
-                <ul>
+  <!--              <ul>
                     <li>Define el formulario del widget</li>
-                </ul>
+                </ul> -->
             </li>
-            <li class="next">Otros hooks...
+            <li class="next">Other hooks...
                 <ul>
-                    <li>hook_field_formatter_form_alter(), hook_field_formatter_WIDGET_TYPE_alter()</li>
+                    <li>hook_field_widget_form_alter(), hook_field_widget_WIDGET_TYPE_alter()</li>
                 </ul>
             </li>
         </ul>
@@ -270,30 +275,32 @@
         <h2>Formatter</h2>
         <ul>
             <li>hook_field_formatter_info()
-            <ul>
+<!--           <ul>
                 <li>Define la estructura del widget</li>
-            </ul>
+            </ul> -->
             </li>
             <li class="next">hook_field_formatter_settings_form()
-                <ul>
+<!--              <ul>
                     <li>Define el formulario de configuración del formatter</li>
-                </ul>
+                </ul> -->
             </li>
             <li class="next">hook_field_formatter_settings_summary()
-                <ul>
+<!--              <ul>
                     <li>Define la presentación de la configuración el formatter</li>
-                </ul>
+                </ul> -->
             </li>
             <li class="next">hook_field_formatter_prepare_view()
-                <ul>
+<!--              <ul>
                     <li>Realiza la lógica necesaria para preparar la presentación del campo.</li>
-                </ul>
+                </ul> -->
             </li>
             <li class="next">hook_field_formatter_view()
-                <ul>
+<!--                <ul>
                     <li>Devuelve el <i>renderable</i> del campo</li>
-                </ul>
+                </ul> -->
             </li>
+            <li class="next">Field formatter settings module (D8 included)</li>
+
         </ul>
     </div></section>
 
@@ -312,13 +319,13 @@
     </div></section>
 
     <!-- hook_node_view() -->
-    <section class="slide" id="strike"><div>
+    <section class="slide code" id="strike"><div>
         <h2>The easy way...</h2>
 		<pre>
 			<code class="language-php">function my_module_node_view($node, $view_mode, $langcode) {
   if ($node-&gt;type == 'page') {
     if (isset($node-&gt;content['field_integer'][0])) {
-      $items = $node-$gt;field_integer['und'];
+      $items = $node->field_integer['und'];
       $result = 0;
       foreach ($items as $item) {
         $result += $item['value'];
@@ -329,23 +336,26 @@
   }
 }</code>
 		</pre>
-        <div class="next strike"><p>Funciona pero...</p></div>
+        <p class="next">It works but...</p>
         <style>
-            #strike .strike {
-                margin-top: -350px;
-                background-color: red;
+            #strike pre {
+                margin-bottom: 18px;
+            }
+            #strike p {
+                float: right;
+                font-size: 50px;
             }
         </style>
     </div></section>
 
     <!-- Let's do Field API style -->
-    <section class="slide shout cover"><div>
+    <section class="slide shout cover shadow"><div>
         <h2>Let's do<br><br><br>Field API style!!</h2>
         <img src="pictures/obama_scale.jpg" alt="">
     </div></section>
 
     <!-- Addition formatter 1-->
-    <section class="slide"><div>
+    <section class="slide code"><div>
         <h2>hook_field_formatter_info()</h2>
 		<pre>
 			<code class="language-php">function addition_formatter_field_formatter_info() {
@@ -362,7 +372,7 @@
     </div></section>
 
     <!-- Addition formatter 2 -->
-    <section class="slide"><div>
+    <section class="slide code"><div>
         <h2>hook_field_formatter_view()</h2>
 		<pre>
 			<code class="language-php">function addition_formatter_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
@@ -390,7 +400,7 @@
     <section class="slide"><div>
         <h2>How would I write it...</h2>
         <ul>
-            <li>Create our custom field type
+            <li class="next">Create our custom field type
                 <ul>
                     <li>4 DB columns (operand1, operand 2, operation and value)</li>
                 </ul>
@@ -468,7 +478,7 @@ $values = $node->my_field[$language][0];</code></p>
     </div></section>
 
     <!-- And Drupal 8?? -->
-    <section class="slide shout cover arnedo"><div>
+    <section class="slide shout cover arnedo shadow"><div>
         <h2>...and Drupal 8??</h2>
         <img src="pictures/arnedo.jpg" alt="">
         <style>
@@ -504,7 +514,7 @@ $values = $node->my_field[$language][0];</code></p>
     </div></section>
 
     <!-- Under construction -->
-    <section class="slide shout cover"><div>
+    <section class="slide shout cover shadow"><div>
         <h2>still under<br><br><br>construction</h2>
         <img src="pictures/working_dog_scale.jpg" alt="">
     </div></section>
@@ -855,7 +865,7 @@ class ArithmeticWidget extends WidgetBase {
         <h2>Thank you!</h2>
         <p>Drupal.org: plopesc</p>
         <p>Twitter: @plopesc</p>
-        <img src="pictures/plopesc_beach_scale.jpg">
+        <img src="pictures/plopesc_beach_scale_bn.jpg">
         <h2 class="footer">Fresh fields are waiting for you!!</h2>
         <style>
             #thank-you .footer {
