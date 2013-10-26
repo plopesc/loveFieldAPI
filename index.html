@@ -117,16 +117,21 @@
             margin-top: 0px;
             font-size: 22px;
         }
+
+        li.highlight {
+            font-size: 32px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="list">
 	<header class="caption">
-		<h1>Déjate seducir por Field API</h1>
+		<h1>Get on with Field API</h1>
 		<p>Drupalcamp Spain - Cáceres 27/10/2013</p>
 	</header>
     <!-- Cover -->
 	<section class="slide cover shadow" id="Cover"><div>
-		<h2>Déjate seducir por Field API</h2>
+		<h2>Get on with Field API</h2>
 		<p>Drupalcamp Spain - Cáceres 27/10/2013</p>
 		<img src="pictures/tulips_scale.jpg" alt="">
 		<!--
@@ -166,37 +171,76 @@
         <h2>Terminology</h2>
         <ul>
             <li>Entities</li>
+            <li>Bundles</li>
             <li>Field Types</li>
             <li>Field Storage</li>
             <li>Field Instances</li>
-            <li>Bundles</li>
         </ul>
     </div></section>
 
     <!-- Structure -->
-    <section class="slide"><div>
-        <h2>Stucture</h2>
+    <section class="slide" id="structure"><div>
+        <h2>Structure</h2>
         <table>
             <tr>
                 <th></th>
-                <th>Laptop bundle</th>
-                <th>Car bundle</th>
+                <th>Semaphore bundle</th>
+                <th>Mug bundle</th>
             </tr>
-            <tr>
+            <tr class="background">
                 <th scope="row">Entity</th>
-                <td>Image 1</td>
-                <td>Image 2</td>
+                <td><img src="pictures/semaforo_scale.png"></td>
+                <td><img src="pictures/mug_scale.jpg"></td>
             </tr>
-            <tr>
-                <th scope="row">instance</th>
-                <td>Laptop color</td>
-                <td>Car color</td>
+            <tr class="background">
+                <th scope="row">Instance</th>
+                <td>Semaphore color</td>
+                <td>Mug color</td>
             </tr>
-            <tr>
+            <tr class="background">
                 <th scope="row">Field Type</th>
                 <td colspan="2" style="text-align: center;">Color</td>
             </tr>
         </table>
+        <style>
+            #structure table {
+                border-collapse: separate;
+                border-spacing: 0 10px;
+                margin-top: -10px; /* correct offset on first border spacing if desired */
+            }
+            #structure td, #structure th {
+                background: none;
+                text-align: center;
+            }
+            #structure tr.background td, #structure tr.background th {
+                border: solid 1px #000;
+                border-style: solid none;
+                padding: 10px;
+                background-color: #696969;
+                height: 75px;
+                vertical-align: middle;
+            }
+            #structure tr.background th:first-child {
+                -webkit-border-top-left-radius: 10px;
+                -moz-border-top-left-radius: 10px;
+                border-top-left-radius: 10px;
+            }
+            #structure tr.background td:last-child {
+                -webkit-border-top-right-radius: 10px;
+                -moz-border-top-right-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+            #structure tr.background th:first-child {
+                -webkit-border-bottom-left-radius: 10px;
+                -moz-border-bottom-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+            #structure tr.background td:last-child {
+                -webkit-border-bottom-right-radius: 10px;
+                -moz-border-bottom-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+        </style>
     </div></section>
 
     <!-- Components -->
@@ -206,9 +250,9 @@
             <li>Field Types API</li>
             <li>Field Language API</li>
             <li>Field Info API</li>
+            <li>Field attach API</li>
             <li>Field CRUD API</li>
             <li>Field Storage API</li>
-            <li>Field API bulk data</li>
         </ul>
 	</div></section>
 
@@ -219,16 +263,10 @@
             <li class="highlight">Field Types API</li>
             <li class="highlight">Field Language API</li>
             <li>Field Info API</li>
+            <li>Field Attach API</li>
             <li>Field CRUD API</li>
             <li>Field Storage API</li>
-            <li>Field API bulk data</li>
         </ul>
-        <style>
-            .highlight {
-                font-size: 32px;
-                font-weight: bold;
-            }
-        </style>
     </div></section>
 
     <!-- Field Types API -->
@@ -245,14 +283,14 @@
     <section class="slide"><div>
         <h2>Field Type</h2>
         <ul>
-            <li>hook_field_schema()
-    <!--            <ul>
-                    <li>Define la estructura de la BD</li>
-                </ul> -->
-            </li>
-            <li class="next">hook_field_info()
+            <li>hook_field_info()
     <!--            <ul>
                     <li>Define la estructura del campo</li>
+                </ul> -->
+            </li>
+            <li class="next">hook_field_schema()
+    <!--            <ul>
+                      <li>Define la estructura de la BD</li>
                 </ul> -->
             </li>
             <li class="next">hook_field_is_empty()
@@ -262,7 +300,7 @@
             </li>
             <li class="next">Other hooks...
                 <ul>
-                    <li>hook_field_validate()</li>
+                    <li>hook_field_validate(), hook_field_presave(), hook_field_prepare_translation()...</li>
                 </ul>
             </li>
         </ul>
@@ -277,6 +315,7 @@
                 <li>Define la estructura del widget</li>
             </ul> -->
             </li>
+            <li class="next">hook_field_widget_settings_form()</li>
             <li class="next">hook_field_widget_form()
   <!--              <ul>
                     <li>Define el formulario del widget</li>
@@ -284,7 +323,7 @@
             </li>
             <li class="next">Other hooks...
                 <ul>
-                    <li>hook_field_widget_form_alter(), hook_field_widget_WIDGET_TYPE_alter()</li>
+                    <li>hook_field_widget_form_alter(), hook_field_widget_WIDGET_TYPE_form_alter(), hook_field_widget_properties_alter(), hook_field_widget_error()...</li>
                 </ul>
             </li>
         </ul>
@@ -325,7 +364,7 @@
     </div></section>
 
     <!-- And why? -->
-    <section class="slide cover"><div>
+    <section class="slide cover shadow"><div>
         <h2>... and all for what??</h2>
         <p class="next highlight">To make our life easier!!</p>
         <img src="pictures/cat_sofa.jpg" alt="">
@@ -345,7 +384,7 @@
 			<code class="language-php">function my_module_node_view($node, $view_mode, $langcode) {
   if ($node-&gt;type == 'page') {
     if (isset($node-&gt;content['field_integer'][0])) {
-      $items = $node->field_integer['und'];
+      $items = $node-&gt;field_integer['und'];
       $result = 0;
       foreach ($items as $item) {
         $result += $item['value'];
@@ -370,7 +409,7 @@
 
     <!-- Let's do Field API style -->
     <section class="slide shout cover shadow"><div>
-        <h2>Let's do<br><br><br>Field API style!!</h2>
+        <h2>Yes, you can<br><br><br>use Field API!!</h2>
         <img src="pictures/obama_scale.jpg" alt="">
     </div></section>
 
@@ -524,8 +563,8 @@ $values = $node->my_field[$language][0];</code></p>
     <!-- Goodbye hooks -->
     <section class="slide"><div>
         <h2>Goodbye hooks and procedural code!</h2>
-        <p>Drupal 7: 80 hooks </p>
-        <p>Drupal 8: 21 hooks and countdown...</p>
+        <p>Drupal 7: 85 hooks </p>
+        <p>Drupal 8: 21 hooks and counting down...</p>
         <ul class="next">
             <li>hook_field_schema() -> ConfigFieldItemInterface::schema()</li>
             <li>hook_field_settings_form() -> ConfigFieldItemInterface::settingsForm()</li>
@@ -548,14 +587,12 @@ $values = $node->my_field[$language][0];</code></p>
     <!-- Formatter example -->
     <section class="slide show-me-the-code"><div>
         <h2>Addition formatter</h2>
-        <p class="filename">modules/addition_formatter/lib/Drupal/addition_formatter/Plugin/field/formatter/NumberFullAdditionFormatter.php</p>
+        <p class="filename">modules/addition_formatter/lib/Drupal/addition_formatter/Plugin/Field/FieldFormatter/NumberFullAdditionFormatter.php</p>
 		<pre>
-			<code class="language-php">namespace Drupal\addition_formatter\Plugin\field\formatter;
+			<code class="language-php">namespace Drupal\addition_formatter\Plugin\Field\FieldFormatter;
 
-use Drupal\field\Annotation\FieldFormatter;
-use Drupal\Core\Annotation\Translation;
-use Drupal\Core\Entity\Field\FieldItemListInterface;
-use Drupal\number\Plugin\field\formatter\NumberDecimalFormatter;
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\number\Plugin\Field\FieldFormatter\NumberDecimalFormatter;
 
 /**
  * Plugin implementation of the 'number_full_addition' formatter.
@@ -582,8 +619,6 @@ class NumberFullAdditionFormatter extends NumberDecimalFormatter {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items) {
-    $elements = array();
-
     foreach ($items as $delta => $item) {
       if ($delta != 0) {
         $items[0]->value += $item->value;
@@ -596,20 +631,18 @@ class NumberFullAdditionFormatter extends NumberDecimalFormatter {
 
 }</code>
 		</pre>
-        <p class="note">URL to snippet</p>
+        <p class="note">https://github.com/plopesc/drupalCampES2013/tree/8.x/addition_formatter</p>
     </div></section>
 
     <!-- Field type exaple -->
     <section class="slide show-me-the-code"><div>
         <h2>Arithmetic field type</h2>
-        <p class="filename">modules/arithmetic_field/lib/Drupal/arithmetic_field/Plugin/field/field_type/ArithmeticItem.php</p>
+        <p class="filename">modules/arithmetic_field/lib/Drupal/arithmetic_field/Plugin/Field/FieldType/ArithmeticItem.php</p>
 		<pre>
-			<code class="language-php">namespace Drupal\arithmetic_field\Plugin\field\field_type;
+			<code class="language-php">namespace Drupal\arithmetic_field\Plugin\Field\FieldType;
 
-use Drupal\Core\Entity\Annotation\FieldType;
-use Drupal\Core\Annotation\Translation;
+use Drupal\Core\Field\ConfigFieldItemBase;
 use Drupal\field\FieldInterface;
-use Drupal\field\Plugin\Type\FieldType\ConfigFieldItemBase;
 
   /**
    * Plugin implementation of the 'arithmetic' field type.
@@ -698,24 +731,41 @@ class ArithmeticItem extends ConfigFieldItemBase {
     return FALSE;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function preSave() {
+    switch($this->operation) {
+      case ArithmeticItem::SUBTRACTION:
+        $this->value = $this->operand1 - $this->operand2;
+        break;
+      case ArithmeticItem::MULTIPLICATION:
+        $this->value = $this->operand1 * $this->operand2;
+        break;
+      case ArithmeticItem::DIVISION:
+        $this->value = $this->operand1 / $this->operand2;
+        break;
+      case ArithmeticItem::ADDITION:
+      default:
+        $this->value = $this->operand1 + $this->operand2;
+    }
+  }
+
 }</code>
 		</pre>
-        <p class="note">URL to snippet</p>
+        <p class="note">https://github.com/plopesc/drupalCampES2013/tree/8.x/arithmetic_field</p>
     </div></section>
 
     <!-- Widget example -->
     <section class="slide show-me-the-code"><div>
         <h2>Arithmetic widget</h2>
-        <p class="filename">modules/arithmetic_field/lib/Drupal/arithmetic_field/Plugin/field/widget/ArithmeticWidget.php</p>
+        <p class="filename">modules/arithmetic_field/lib/Drupal/arithmetic_field/Plugin/Field/fieldWidget/ArithmeticWidget.php</p>
 		<pre>
-			<code class="language-php">namespace Drupal\arithmetic_field\Plugin\field\widget;
+			<code class="language-php">namespace Drupal\arithmetic_field\Plugin\Field\fieldWidget;
 
-use Drupal\arithmetic_field\Plugin\field\field_type\ArithmeticItem;
-use Drupal\field\Annotation\FieldWidget;
-use Drupal\Core\Annotation\Translation;
-use Drupal\Core\Entity\Field\FieldItemListInterface;
-use Drupal\field\Plugin\Type\Widget\WidgetBase;
-use Symfony\Component\Validator\ConstraintViolationInterface;
+use Drupal\arithmetic_field\Plugin\Field\FieldType\ArithmeticItem;
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Field\WidgetBase;
 
 /**
  * Plugin implementation of the 'arithmetic' widget.
@@ -806,32 +856,9 @@ class ArithmeticWidget extends WidgetBase {
     return $element;
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function massageFormValues(array $values, array $form, array &$form_state) {
-    foreach ($values as $delta => &$item) {
-      switch($item['operation']) {
-        case ArithmeticItem::SUBTRACTION:
-          $item['value'] = $item['operand1'] - $item['operand2'];
-          break;
-        case ArithmeticItem::MULTIPLICATION:
-          $item['value'] = $item['operand1'] * $item['operand2'];
-          break;
-        case ArithmeticItem::DIVISION:
-          $item['value'] = $item['operand1'] / $item['operand2'];
-          break;
-        case ArithmeticItem::ADDITION:
-        default:
-          $item['value'] = $item['operand1'] + $item['operand2'];
-      }
-    }
-    return $values;
-  }
-
 }</code>
 		</pre>
-        <p class="note">URL to snippet</p>
+        <p class="note">https://github.com/plopesc/drupalCampES2013/tree/8.x/arithmetic_field</p>
     </div></section>
 
     <!-- Code comparison -->
@@ -848,18 +875,18 @@ class ArithmeticWidget extends WidgetBase {
                 <th scope="row">Drupal 7</th>
                 <td>2</td>
                 <td>1</td>
-                <td>XXXXXXX</td>
+                <td>98</td>
             </tr>
             <tr>
                 <th scope="row">Drupal 8</th>
                 <td>4</td>
                 <td>7</td>
-                <td>XXXXXXXXX</td>
+                <td>61</td>
             </tr>
         </table>
         <table>
             <tr>
-                <th scope="col" width=380>Arithmetic Field</th>
+                <th scope="col" width=380>Arithmetic field</th>
                 <th>Files</th>
                 <th>Folders</th>
                 <th>Lines of code</th>
@@ -868,16 +895,22 @@ class ArithmeticWidget extends WidgetBase {
                 <th scope="row">Drupal 7</th>
                 <td>3</td>
                 <td>1</td>
-                <td>XXXXXXX</td>
+                <td>128</td>
             </tr>
             <tr>
                 <th scope="row">Drupal 8</th>
                 <td>5</td>
                 <td>9</td>
-                <td>XXXXXXXXX</td>
+                <td>187</td>
             </tr>
         </table>
         <p>It’s good to have code organized.</p>
+    </div></section>
+
+    <!-- Don't stop me now -->
+    <section class="slide shout cover shadow"><div>
+        <h2>Don't stop me now<br><br><br>using Field API</h2>
+        <img src="pictures/freddie.jpeg" alt="">
     </div></section>
 
     <!-- Thank you! -->
@@ -885,7 +918,7 @@ class ArithmeticWidget extends WidgetBase {
         <h2>Thank you!</h2>
         <p>Drupal.org: plopesc</p>
         <p>Twitter: @plopesc</p>
-        <img src="pictures/plopesc_beach_scale_bn.jpg">
+        <img src="pictures/plopesc_contrast.jpg">
         <h2 class="footer">Fresh fields are waiting for you!!</h2>
         <style>
             #thank-you .footer {
